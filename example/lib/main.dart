@@ -56,6 +56,7 @@ class _GeocodeViewState extends State<GeocodeView> {
     try {
       var geocoding = AppState.of(context).mode;
       var results = await geocoding.findAddressesFromQuery(_controller.text);
+      if (results == null) return;
       this.setState(() {
         this.results = results;
       });
@@ -132,6 +133,7 @@ class _ReverseGeocodeViewState extends State<ReverseGeocodeView> {
       var latitude = double.parse(_controllerLatitude.text);
       var results = await geocoding
           .findAddressesFromCoordinates(Coordinates(latitude, longitude));
+      if (results == null) return;
       this.setState(() {
         this.results = results;
       });
